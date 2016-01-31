@@ -33,6 +33,8 @@ def main():
 		'ns' : ga.next_step,
 		'an' : ga.add_node,
 		'hn' : ga.highlight_node,
+		'ln' : ga.label_node,
+		'un' : ga.unlabel_node,
 		'rn' : ga.remove_node,
 		'ae' : ga.add_edge,
 		'he' : ga.highlight_edge,

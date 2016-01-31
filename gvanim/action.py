@@ -36,12 +36,28 @@ class HighlightNode( object ):
 		steps[ -1 ].V.add( self.v )
 		steps[ -1 ].hV.add( self.v )
 
+class LabelNode( object ):
+	def __init__( self, v, label ):
+		self.v = v
+		self.label = label
+	def __call__( self, steps ):
+		steps[ -1 ].V.add( self.v )
+		steps[ -1 ].L[ self.v ] = self.label
+
+class UnlabelNode( object ):
+	def __init__( self, v ):
+		self.v = v
+	def __call__( self, steps ):
+		steps[ -1 ].V.add( self.v )
+		del steps[ -1 ].L[ self.v ]
+
 class RemoveNode( object ):
 	def __init__( self, v ):
 		self.v = v
 	def __call__( self, steps ):
 		steps[ -1 ].V.discard( self.v )
 		steps[ -1 ].hV.discard( self.v )
+		del steps[ -1 ].L[ self.v ]
 		dE = set( e for e in steps[ -1 ].E if self.v in e )
 		steps[ -1 ].E -= dE
 		steps[ -1 ].hE -= dE

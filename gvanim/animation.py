@@ -23,18 +23,26 @@ class Step( object ):
 		if step:
 			self.V = step.V.copy()
 			self.E = step.E.copy()
+			self.L = step.L.copy()
 		else:
 			self.V = set()
 			self.E = set()
+			self.L = dict()
 		self.hV = set()
 		self.hE = set()
 
 	def node_format( self, v ):
+		fmt = []
+		try:
+			fmt.append( 'label="{}"'.format( self.L[ v ] ) )
+		except KeyError:
+			pass
 		if v in self.hV:
-			return '[color=red]'
-		elif v in self.V:
-			return ''
-		return '[style=invis]'
+			fmt.append( 'color=red' )
+		elif v not in self.V:
+			fmt.append( 'style=invis' )
+		if fmt: return '[{}]'.format( ','.join( fmt ) )
+		return ''
 
 	def edge_format( self, e ):
 		if e in self.hE:
@@ -44,7 +52,7 @@ class Step( object ):
 		return '[style=invis]'
 
 	def __repr__( self ):
-		return '{{ V = {}, E = {}, hV = {}, hE = {} }}'.format( self.V, self.E, self.hV, self.hE )
+		return '{{ V = {}, E = {}, hV = {}, hE = {}, L = {} }}'.format( self.V, self.E, self.hV, self.hE, self.L )
 
 class Animation( object ):
 
@@ -59,6 +67,12 @@ class Animation( object ):
 
 	def highlight_node( self, v ):
 		self._actions.append( action.HighlightNode( v ) )
+
+	def label_node( self, v, label ):
+		self._actions.append( action.LabelNode( v, label ) )
+
+	def unlabel_node( self, v ):
+		self._actions.append( action.UnlabelNode( v ) )
 
 	def remove_node( self, v ):
 		self._actions.append( action.RemoveNode( v ) )
