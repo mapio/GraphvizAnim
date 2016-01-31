@@ -41,6 +41,8 @@ finally, you can generate an [Erdős–Rényi](https://en.wikipedia.org/wiki/Erd
 
 Any help will be appreciated. Things to do to make this more usable are:
 
+- [ ] add `setup.py`,
+- [ ] add tests,
 - [ ] add other *actions* (such as labeling of nodes and edges),
 - [ ] document the Python code,
 - [ ] add option parsing to `__main__.py`,
