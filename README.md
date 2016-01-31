@@ -1,7 +1,7 @@
 # GraphvizAnim
 
 GraphvizAnim is a tool to create simple animated graph visualizations; it is
-just a proof of concept, aimed mainly to teaching purposes. It is based on
+just a proof of concept, aimed mainly at teaching purposes. It is based on
 [Graphviz](http://www.graphviz.org/) for the graph rendering part and on
 [ImageMagick](http://www.imagemagick.org/) for the animated gif generation.
 
