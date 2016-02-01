@@ -15,21 +15,19 @@
 # You should have received a copy of the GNU General Public License along with
 # "GraphvizAnim". If not, see <http://www.gnu.org/licenses/>.
 
-from subprocess import Popen, PIPE, STDOUT, call
+from os.path import join
+from tempfile import mkdtemp
+from shutil import rmtree
 
-def render( graphs, basename, fmt = 'png' ):
-	paths = []
-	for n, graph in enumerate( graphs ):
-		path = '{}_{:03}.{}'.format( basename, n, fmt )
-		with open( path , 'w' ) as out:
- 			pipe = Popen( [ 'dot', '-T', fmt ], stdout = out, stdin = PIPE, stderr = None )
-			pipe.communicate( input = graph )
-		paths.append( path )
-	return paths
+from IPython.display import SVG
+import ipywidgets as widgets
 
-def gif( files, basename, delay = 100 ):
-	cmd = [ 'convert' ]
-	for file in files:
-		cmd.extend( ( '-delay', str( delay ), file ) )
-	cmd.append( basename + '.gif' )
-	call( cmd )
+from render import render
+
+def interactive( animation ):
+	basedir = mkdtemp()
+	basename = join( basedir, 'graph' )
+	steps = [ SVG( path ) for path in render( animation.graphs(), basename, 'svg' ) ]
+	rmtree( basedir )
+	slider = widgets.IntSlider( min = 0, max = len( steps ) - 1, step = 1, value = 0 )
+	return widgets.interactive( lambda n: steps[ n ], n = slider )

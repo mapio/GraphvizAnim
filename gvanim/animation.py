@@ -131,8 +131,8 @@ class Animation( object ):
 		graphs = []
 		for n, s in enumerate( steps ):
 			graph = [ 'digraph G {' ]
-			for v in V: graph.append( '"{}" {};'.format( quote( v ), s.node_format( v ) ) )
-			for e in E: graph.append( '"{}" -> "{}" {};'.format( quote( e[ 0 ] ), quote( e[ 1 ] ), s.edge_format( e ) ) )
+			for v in V: graph.append( '"{}" {};'.format( quote( str( v ) ), s.node_format( v ) ) )
+			for e in E: graph.append( '"{}" -> "{}" {};'.format( quote( str( e[ 0 ] ) ), quote( str( e[ 1 ] ) ), s.edge_format( e ) ) )
 			graph.append( '}' )
 			graphs.append( '\n'.join( graph ) )
 		return graphs
