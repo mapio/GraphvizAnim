@@ -39,11 +39,6 @@ finally, you can generate an [Erdős–Rényi](https://en.wikipedia.org/wiki/Erd
 	gcc -o er er.c
 	./er | python -m gvanim er
 
-## With Jupyter
-
-[![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/mapio/GraphvizAnim)
-
-
 ## Todo
 
 Any help will be appreciated. Things to do to make this more usable are:
