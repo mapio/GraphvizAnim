@@ -51,8 +51,7 @@ and running all the cells in order.
 The [binder](http://mybinder.org) service lets you run
 [Jupyter](http://jupyter.org/) notebooks starting from GitHub repositories.
 Using such service, you can see the [simple.ipynb](examples/simple.ipynb)
-example [actually running](http://mybinder.org/repo/mapio/GraphvizAnim-
-Examples)  on-line.
+example [actually running](http://mybinder.org/repo/mapio/GraphvizAnim-Examples) on-line.
 
 ## Todo
 
