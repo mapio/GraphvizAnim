@@ -86,14 +86,19 @@ class Animation( object ):
 	def remove_edge( self, u, v ):
 		self._actions.append( action.RemoveEdge( u, v ) )
 
-	def to_graphs( self ):
-		graphs = []
+	def steps( self ):
 		steps = [ Step() ]
-		V, E = set(), set()
 		for action in self._actions:
 			action( steps )
-			V |= steps[ -1 ].V
-			E |= steps[ -1 ].E
+		return steps
+
+	def graphs( self ):
+		steps = self.steps()
+		V, E = set(), set()
+		for step in steps:
+			V |= step.V
+			E |= step.E
+		graphs = []
 		for n, s in enumerate( steps ):
 			graph = [ 'digraph G {' ]
 			for v in V: graph.append( '{} {};'.format( v, s.node_format( v ) ) )

@@ -44,6 +44,6 @@ def dfv( v ):
 
 dfv( 0 )
 
-graphs = ga.to_graphs()
+graphs = ga.graphs()
 files = render( graphs, 'dfv', 'png' )
 to_gif( files, 'dfv', 50 )
