@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License along with
 # "GraphvizAnim". If not, see <http://www.gnu.org/licenses/>.
 
+from email.utils import quote
 import shlex
 
 import action
@@ -105,6 +106,7 @@ class Animation( object ):
 		}
 		for line in lines:
 			parts = shlex.split( line.strip(), True )
+			if not parts: continue
 			action, params = parts[ 0 ], parts[ 1: ]
 			try:
 				action2method[ action ]( *params )
@@ -129,8 +131,8 @@ class Animation( object ):
 		graphs = []
 		for n, s in enumerate( steps ):
 			graph = [ 'digraph G {' ]
-			for v in V: graph.append( '{} {};'.format( v, s.node_format( v ) ) )
-			for e in E: graph.append( '{}->{} {};'.format( e[0], e[1], s.edge_format( e ) ) )
+			for v in V: graph.append( '"{}" {};'.format( quote( v ), s.node_format( v ) ) )
+			for e in E: graph.append( '"{}" -> "{}" {};'.format( quote( e[ 0 ] ), quote( e[ 1 ] ), s.edge_format( e ) ) )
 			graph.append( '}' )
 			graphs.append( '\n'.join( graph ) )
 		return graphs

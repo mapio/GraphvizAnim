@@ -1,13 +1,14 @@
 ae 1 2
-ae 1 3
-ae 2 "a node"
+ae 1 "a \"node\""
+ae 2 "a \"node\""
 ns
 hn 1
 ns
 hn 2
 ln 2 "foo bar"
 ns
-hn "a node"
+hn "a \"node\""
+# this is a comment
 ae 1 4
 ns
 un 2
