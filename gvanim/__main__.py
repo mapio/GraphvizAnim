@@ -16,7 +16,7 @@
 # "GraphvizAnim". If not, see <http://www.gnu.org/licenses/>.
 
 from argparse import ArgumentParser, FileType
-from sys import stdin, argv, stderr
+from sys import stdin
 
 import animation, render
 
@@ -29,30 +29,7 @@ def main():
 	args = parser.parse_args()
 
 	ga = animation.Animation()
-	cmd2method = {
-		'ns' : ga.next_step,
-		'an' : ga.add_node,
-		'hn' : ga.highlight_node,
-		'ln' : ga.label_node,
-		'un' : ga.unlabel_node,
-		'rn' : ga.remove_node,
-		'ae' : ga.add_edge,
-		'he' : ga.highlight_edge,
-		're' : ga.remove_edge,
-	}
-
-	for line in args.animation:
-		parts = line.strip().split()
-		cmd, params = parts[ 0 ], parts[ 1: ]
-		try:
-			cmd2method[ cmd ]( *params )
-		except KeyError:
-			print >>stderr, 'gvanim: unrecognized command: {}'.format( cmd )
-			return
-		except TypeError:
-			print >>stderr, 'gvanim: wrong number of parameters: {}'.format( line.strip() )
-			return
-
+	ga.parse( args.animation )
 	render.gif( render.render( ga.graphs(), args.basename, 'png' ), args.basename, args.delay )
 
 if __name__ == '__main__':

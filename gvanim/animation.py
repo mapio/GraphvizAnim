@@ -15,7 +15,12 @@
 # You should have received a copy of the GNU General Public License along with
 # "GraphvizAnim". If not, see <http://www.gnu.org/licenses/>.
 
+import shlex
+
 import action
+
+class ParseException( Exception ):
+	pass
 
 class Step( object ):
 
@@ -85,6 +90,29 @@ class Animation( object ):
 
 	def remove_edge( self, u, v ):
 		self._actions.append( action.RemoveEdge( u, v ) )
+
+	def parse( self, lines ):
+		action2method = {
+			'ns' : self.next_step,
+			'an' : self.add_node,
+			'hn' : self.highlight_node,
+			'ln' : self.label_node,
+			'un' : self.unlabel_node,
+			'rn' : self.remove_node,
+			'ae' : self.add_edge,
+			'he' : self.highlight_edge,
+			're' : self.remove_edge,
+		}
+		for line in lines:
+			parts = shlex.split( line.strip(), True )
+			action, params = parts[ 0 ], parts[ 1: ]
+			try:
+				action2method[ action ]( *params )
+			except KeyError:
+				raise ParseException( 'unrecognized command: {}'.format( action ) )
+			except TypeError:
+ 				raise ParseException( 'wrong number of parameters: {}'.format( line.strip() ) )
+				return
 
 	def steps( self ):
 		steps = [ Step() ]
