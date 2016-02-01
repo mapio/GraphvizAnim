@@ -53,7 +53,7 @@ def main():
 			print >>stderr, 'gvanim: wrong number of parameters: {}'.format( line.strip() )
 			return
 
-	render.to_gif( render.render( ga.graphs(), args.basename, 'png' ), args.basename, args.delay )
+	render.gif( render.render( ga.graphs(), args.basename, 'png' ), args.basename, args.delay )
 
 if __name__ == '__main__':
 	main()

@@ -16,4 +16,4 @@
 # "GraphvizAnim". If not, see <http://www.gnu.org/licenses/>.
 
 from .animation import Animation
-from .render import render, to_gif
+from .render import render, gif

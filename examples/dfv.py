@@ -17,7 +17,7 @@
 
 from random import sample
 
-from gvanim import Animation, render, to_gif
+from gvanim import Animation, render, gif
 
 N = range( 6 )
 K = 3
@@ -46,4 +46,4 @@ dfv( 0 )
 
 graphs = ga.graphs()
 files = render( graphs, 'dfv', 'png' )
-to_gif( files, 'dfv', 50 )
+gif( files, 'dfv', 50 )

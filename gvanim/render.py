@@ -28,7 +28,7 @@ def render( graphs, basename, fmt ):
 		files.append( file )
 	return files
 
-def to_gif( files, basename, delay = 10 ):
+def gif( files, basename, delay = 10 ):
 	cmd = [ 'convert' ]
 	for file in files:
 		cmd.extend( ( '-delay', str( delay ), file ) )
