@@ -18,14 +18,14 @@
 from subprocess import Popen, PIPE, STDOUT, call
 
 def render( graphs, basename, fmt ):
-	files = []
+	paths = []
 	for n, graph in enumerate( graphs ):
-		file = '{}_{:03}.{}'.format( basename, n, fmt )
-		with open( file , 'w' ) as out:
+		path = '{}_{:03}.{}'.format( basename, n, fmt )
+		with open( path , 'w' ) as out:
  			pipe = Popen( [ 'dot', '-T', fmt ], stdout = out, stdin = PIPE, stderr = None )
 			pipe.communicate( input = graph )
-		files.append( file )
-	return files
+		paths.append( path )
+	return paths
 
 def gif( files, basename, delay = 100 ):
 	cmd = [ 'convert' ]
