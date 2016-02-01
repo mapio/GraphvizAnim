@@ -31,13 +31,20 @@ or you can generate the simple animation described in
 
 	python -m gvanim examples/simple.txt simple
 
-finally, you can generate an [Erdős–Rényi](https://en.wikipedia.org/wiki/Erd%C
-5%91s%E2%80%93R%C3%A9nyi_model) graph (with 10 nodes and edge probability
+You can generate an [Erdős–Rényi](https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_model) graph (with 10 nodes and edge probability
 1/10) by running
 
 	cd examples
 	gcc -o er er.c
 	./er | python -m gvanim er
+
+Finally, you can obain an interactive visualization with
+[Jupyter](http://jupyter.org/) by running
+
+	cd examples
+	jupyter notebook simple.ipynb
+
+and running all the cells in order.
 
 ## Todo
 
@@ -49,5 +56,5 @@ Any help will be appreciated. Things to do to make this more usable are:
 - [ ] document the Python code,
 - [x] add option parsing to `__main__.py`,
 - [ ] integrate this with [PyGraphviz](https://pygraphviz.github.io/),
-- [ ] integrate this with [Jupyter](http://jupyter.org/),
+- [x] integrate this with [Jupyter](http://jupyter.org/),
 - [ ] add more relavant examples.
