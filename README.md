@@ -19,7 +19,7 @@ a program in any language).
 The [examples](examples) folder contains few instances of such approaches.
 After intsalling the package with `python setup.py install`, or using
 
-	pip install https://github.com/mapio/GraphvizAnim/archive/0.1-alpha.zip
+	pip install https://github.com/mapio/GraphvizAnim/archive/0.2-alpha.zip
 
 you can generate an animated depth first visit (in a 3-regular random graph of
 6 nodes) by running
