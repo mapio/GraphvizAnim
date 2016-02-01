@@ -24,7 +24,6 @@ def render( graphs, basename, fmt ):
 		with open( file , 'w' ) as out:
  			pipe = Popen( [ 'dot', '-T', fmt ], stdout = out, stdin = PIPE, stderr = None )
 			pipe.communicate( input = graph )
-			pass
 		files.append( file )
 	return files
 
