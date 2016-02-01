@@ -44,7 +44,15 @@ Finally, you can obain an interactive visualization with
 	cd examples
 	jupyter notebook simple.ipynb
 
-and running all the cells in order; you can [run this example on-line](http://mybinder.org/repo/mapio/GraphvizAnim-Examples) using [binder](http://mybinder.org).
+and running all the cells in order.
+
+## Binder
+
+The [binder](http://mybinder.org) service lets you run
+[Jupyter](http://jupyter.org/) notebooks starting from GitHub repositories.
+Using such service, you can see the [simple.ipynb](examples/simple.ipynb)
+example [actually running](http://mybinder.org/repo/mapio/GraphvizAnim-
+Examples)  on-line.
 
 ## Todo
 
