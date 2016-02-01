@@ -44,7 +44,7 @@ Finally, you can obain an interactive visualization with
 	cd examples
 	jupyter notebook simple.ipynb
 
-and running all the cells in order.
+and running all the cells in order; you can [run this example on-line](http://mybinder.org/repo/mapio/GraphvizAnim-Examples) using [binder](http://mybinder.org).
 
 ## Todo
 
