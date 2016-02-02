@@ -49,7 +49,10 @@ class UnlabelNode( object ):
 		self.v = v
 	def __call__( self, steps ):
 		steps[ -1 ].V.add( self.v )
-		del steps[ -1 ].L[ self.v ]
+		try:
+			del steps[ -1 ].L[ self.v ]
+		except KeyError:
+			pass
 
 class RemoveNode( object ):
 	def __init__( self, v ):
