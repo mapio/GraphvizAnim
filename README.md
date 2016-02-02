@@ -9,6 +9,7 @@ just a proof of concept, aimed mainly at teaching purposes. It is based on
 
 <p align="center">
 <img src="examples/dfv.gif"/>
+<img src="examples/heapsort.gif"/>
 </p>
 
 A *graph animation* is just a sequence of *steps*, a step is in turn one or
