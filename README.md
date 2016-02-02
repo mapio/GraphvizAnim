@@ -1,5 +1,7 @@
 # GraphvizAnim
 
+[![Build Status](https://travis-ci.org/mapio/GraphvizAnim.png?branch=master)](https://travis-ci.org/mapio/GraphvizAnim)
+
 GraphvizAnim is a tool to create simple animated graph visualizations; it is
 just a proof of concept, aimed mainly at teaching purposes. It is based on
 [Graphviz](http://www.graphviz.org/) for the graph rendering part and on
