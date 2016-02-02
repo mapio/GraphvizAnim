@@ -11,6 +11,9 @@ class TestActions( unittest.TestCase ):
 		self.steps = None
 
 	def test_remove_unlabeled_node( self ):
+		ga.RemoveNode( 0 )( self.steps )
+
+	def test_unlabel_unexistent_node( self ):
 		ga.UnlabelNode( 0 )( self.steps )
 
 if __name__ == '__main__':

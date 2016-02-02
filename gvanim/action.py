@@ -60,7 +60,10 @@ class RemoveNode( object ):
 	def __call__( self, steps ):
 		steps[ -1 ].V.discard( self.v )
 		steps[ -1 ].hV.discard( self.v )
-		del steps[ -1 ].L[ self.v ]
+		try:
+			del steps[ -1 ].L[ self.v ]
+		except KeyError:
+			pass
 		dE = set( e for e in steps[ -1 ].E if self.v in e )
 		steps[ -1 ].E -= dE
 		steps[ -1 ].hE -= dE
