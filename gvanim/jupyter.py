@@ -19,15 +19,15 @@ from os.path import join
 from tempfile import mkdtemp
 from shutil import rmtree
 
-from IPython.display import SVG
+from IPython.display import Image
 import ipywidgets as widgets
 
 from render import render
 
-def interactive( animation ):
+def interactive( animation, size = 320 ):
 	basedir = mkdtemp()
 	basename = join( basedir, 'graph' )
-	steps = [ SVG( path ) for path in render( animation.graphs(), basename, 'svg' ) ]
+	steps = [ Image( path ) for path in render( animation.graphs(), basename, 'png', size ) ]
 	rmtree( basedir )
 	slider = widgets.IntSlider( min = 0, max = len( steps ) - 1, step = 1, value = 0 )
 	return widgets.interactive( lambda n: steps[ n ], n = slider )

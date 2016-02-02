@@ -17,12 +17,12 @@
 
 from subprocess import Popen, PIPE, STDOUT, call
 
-def render( graphs, basename, fmt = 'png' ):
+def render( graphs, basename, fmt = 'png', size = 320 ):
 	paths = []
 	for n, graph in enumerate( graphs ):
 		path = '{}_{:03}.{}'.format( basename, n, fmt )
 		with open( path , 'w' ) as out:
- 			pipe = Popen( [ 'dot', '-T', fmt ], stdout = out, stdin = PIPE, stderr = None )
+ 			pipe = Popen( [ 'dot',  '-Gsize=1,1!', '-Gdpi={}'.format( size ), '-T', fmt ], stdout = out, stdin = PIPE, stderr = None )
 			pipe.communicate( input = graph )
 		paths.append( path )
 	return paths
