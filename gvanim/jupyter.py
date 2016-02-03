@@ -24,10 +24,12 @@ import ipywidgets as widgets
 
 from render import render
 
-def interactive( animation, size = 320 ):
-	basedir = mkdtemp()
-	basename = join( basedir, 'graph' )
-	steps = [ Image( path ) for path in render( animation.graphs(), basename, 'png', size ) ]
-	rmtree( basedir )
-	slider = widgets.IntSlider( min = 0, max = len( steps ) - 1, step = 1, value = 0 )
-	return widgets.interactive( lambda n: steps[ n ], n = slider )
+
+def interactive(animation, size=320):
+    basedir = mkdtemp()
+    basename = join(basedir, 'graph')
+    steps = [Image(path) for path in
+             render(animation.graphs(), basename, 'png', size)]
+    rmtree(basedir)
+    slider = widgets.IntSlider(min=0, max=len(steps) - 1, step=1, value=0)
+    return widgets.interactive(lambda n: steps[n], n=slider)

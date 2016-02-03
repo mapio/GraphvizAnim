@@ -18,23 +18,30 @@
 from subprocess import Popen, PIPE, STDOUT, call
 from multiprocessing import Pool, cpu_count
 
-def _render( params ):
-	path, fmt, size, graph = params
-	with open( path , 'w' ) as out:
-		pipe = Popen( [ 'dot',  '-Gsize=1,1!', '-Gdpi={}'.format( size ), '-T', fmt ], stdout = out, stdin = PIPE, stderr = None )
-		pipe.communicate( input = graph )
-	return path
 
-def render( graphs, basename, fmt = 'png', size = 320 ):
-	try:
-		_map = Pool( processes = cpu_count() ).map
-	except NotImplementedError:
-		_map = map
-	return _map( _render, [ ( '{}_{:03}.{}'.format( basename, n, fmt ), fmt, size, graph ) for n, graph in enumerate( graphs ) ] )
+def _render(params):
+    path, fmt, size, graph = params
+    print path
+    with open(path, 'w') as out:
+        pipe = Popen(['dot', '-Gsize=1,1!', '-Gdpi={}'.format(size), '-T', fmt],
+                     stdout=out, stdin=PIPE, stderr=None)
+        pipe.communicate(input=graph)
+    return path
 
-def gif( files, basename, delay = 100 ):
-	cmd = [ 'convert' ]
-	for file in files:
-		cmd.extend( ( '-delay', str( delay ), file ) )
-	cmd.append( basename + '.gif' )
-	call( cmd )
+
+def render(graphs, basename, fmt='png', size=320):
+    try:
+        _map = Pool(processes=cpu_count()).map
+    except NotImplementedError:
+        _map = map
+    return _map(_render,
+                [('{}_{:03}.{}'.format(basename, n, fmt), fmt, size, graph) for
+                 n, graph in enumerate(graphs)])
+
+
+def gif(files, basename, delay=100):
+    cmd = ['convert']
+    for file in files:
+        cmd.extend(('-delay', str(delay), file))
+    cmd.append(basename + '.gif')
+    call(cmd)
