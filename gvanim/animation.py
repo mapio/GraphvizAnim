@@ -17,9 +17,8 @@
 
 from email.utils import quote
 import shlex
-
 import action
-
+import pygraphviz as pgv
 
 class ParseException(Exception):
     pass
@@ -166,6 +165,28 @@ class Animation(object):
         return steps
 
     @property
+    def edges_nodes(self):
+        """
+        Get all the edges and nodes encountered in all the steps
+        At the same time get all the steps (for free, as we need them to get
+        nodes and edges anyway)
+
+        Returns
+        -------
+        steps:
+        E:
+        V:
+        """
+        steps = self.steps
+        # Get all the vertices and edges that we will encounter in those graphs
+        V, E = set(), set()
+        for step in steps:
+            V |= step.V
+            E |= step.E
+
+        return steps, E, V
+
+    @property
     def graphs(self):
         """
         Create dot format graphs from the current :class:`Animation` object.
@@ -179,12 +200,8 @@ class Animation(object):
         # Get a list of all the steps. Each step contains a list of all
         # current nodes, edges as well as highlighted edges and nodes. Those
         # are animation steps
-        steps = self.steps
-        # Get all the vertices and edges that we will encounter in those graphs
-        V, E = set(), set()
-        for step in steps:
-            V |= step.V
-            E |= step.E
+        # Get also all nodes and vertices
+        steps, E, V = self.edges_nodes
         # Go through all the steps
         graphs = []
         for n, s in enumerate(steps):
@@ -202,3 +219,57 @@ class Animation(object):
             # Add this graph to the list of all graphs
             graphs.append('\n'.join(graph))
         return graphs
+
+    def py_graphs(self, **kwargs):
+        """
+        Create pygraphviz graphs from the  current :class:`Animation` object.
+
+        Returns
+        -------
+        py_graphs: list of Graphviz graphs
+
+        Keyword arguments
+        -----------------
+        directed: bool
+            Is the graph directed or not?
+            See :py:class:`pygraph.AGraph` for details
+        strict: bool
+            Parallel edges or self loop allowed?
+            See :py:class:`pygraph.AGraph` for details
+        layout: str
+            The kind of layout we want to use.
+            ['neato'|'dot'|'twopi'|'circo'|'fdp'|'nop']
+            Defaults to neato
+            See :py:func:`pygraphviz.AGraph.layout` for details
+        """
+
+        # Optional graph properties
+        directed = kwargs.get('directed', True)
+        strict = kwargs.get('strict', False)
+        layout = kwargs.get('layout', 'neato')
+        # Get all steps, edges and nodes
+        steps, E, V = self.edges_nodes
+        py_graphs = []
+        for n, s in enumerate(steps):
+            # Initialize a new graph
+            graph = pgv.AGraph(strict=strict, directed=directed)
+            # Note: We are node handling the 'invis' case as in the
+            # node_format of edge_format method of the Step class but it
+            # should not happen as we get our edges and nodes from the steps
+            # For every node
+            for v in V:
+                if v in s.hV:
+                    color = 'red'
+                else:
+                    color = 'black'
+                graph.add_node(str(v), color=color)
+            # For every edge
+            for e in E:
+                if e in s.hE:
+                    color = 'red'
+                else:
+                    color = 'black'
+                graph.add_edge(e, color=color)
+                graph.layout(prog=layout)
+            py_graphs.append(graph)
+        return py_graphs
