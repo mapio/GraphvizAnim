@@ -69,8 +69,8 @@ def dfv(v):
 dfv(0)
 
 # Get the animation object graphs (one per 'step')
-graphs = ga.graphs
+graphs = ga.graphs  # For pygraphviz replace by .py_graphs()
 # Render those graphs to png files through `dot`
-files = render(graphs, 'dfv', 'png')
+files = render(graphs, 'dfv', 'png')  # add size=20., layout='dot'
 # Make a gif out of those files
 gif(files, 'dfv', 50)

@@ -236,17 +236,11 @@ class Animation(object):
         strict: bool
             Parallel edges or self loop allowed?
             See :py:class:`pygraph.AGraph` for details
-        layout: str
-            The kind of layout we want to use.
-            ['neato'|'dot'|'twopi'|'circo'|'fdp'|'nop']
-            Defaults to neato
-            See :py:func:`pygraphviz.AGraph.layout` for details
         """
 
         # Optional graph properties
         directed = kwargs.get('directed', True)
         strict = kwargs.get('strict', False)
-        layout = kwargs.get('layout', 'neato')
         # Get all steps, edges and nodes
         steps, E, V = self.edges_nodes
         py_graphs = []
@@ -270,6 +264,5 @@ class Animation(object):
                 else:
                     color = 'black'
                 graph.add_edge(e, color=color)
-                graph.layout(prog=layout)
             py_graphs.append(graph)
         return py_graphs
