@@ -5,7 +5,7 @@
 GraphvizAnim is a tool to create simple animated graph visualizations; it is
 just a proof of concept, aimed mainly at teaching purposes. It is based on
 [Graphviz](http://www.graphviz.org/) for the graph rendering part and on
-[ImageMagick](http://www.imagemagick.org/) for the animated gif generation.
+[ImageMagick](http://www.imagemagick.org/) for the animated gif generation. You can [run the heap sort animation](http://mybinder.org/repo/mapio/GraphvizAnim/examples/heapsort.ipynb) on-line using [binder](http://mybinder.org/).
 
 <p align="center">
 <img src="examples/dfv.gif"/>
@@ -41,30 +41,12 @@ You can generate an [Erdős–Rényi](https://en.wikipedia.org/wiki/Erd%C5%91s%E
 	gcc -o er er.c
 	./er | python -m gvanim er
 
-Finally, you can obain an interactive visualization with
-[Jupyter](http://jupyter.org/) by running
+Finally, you can obain an interactive visualization of the *heap sort*
+algorithm using [Jupyter](http://jupyter.org/) by running
 
 	cd examples
-	jupyter notebook simple.ipynb
+	jupyter notebook heapsort.ipynb
 
-and running all the cells in order.
-
-## Binder
-
-The [binder](http://mybinder.org) service lets you run
-[Jupyter](http://jupyter.org/) notebooks starting from GitHub repositories.
-Using such service, you can see the [simple.ipynb](examples/simple.ipynb)
-example [actually running](http://mybinder.org/repo/mapio/GraphvizAnim-Examples) on-line.
-
-## Todo
-
-Any help will be appreciated. Things to do to make this more usable are:
-
-- [x] add `setup.py`,
-- [ ] add tests,
-- [x] add other *actions* (such as labeling of nodes and edges),
-- [ ] document the Python code,
-- [x] add option parsing to `__main__.py`,
-- [ ] integrate this with [PyGraphviz](https://pygraphviz.github.io/),
-- [x] integrate this with [Jupyter](http://jupyter.org/),
-- [ ] add more relevant examples.
+and running all the cells in order; or you can give a try to
+[binder](http://mybinder.org) and watch the above animation
+[actually running](http://mybinder.org/repo/mapio/GraphvizAnim/examples/heapsort.ipynb) on-line.
