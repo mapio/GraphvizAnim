@@ -19,19 +19,19 @@ from subprocess import Popen, PIPE, STDOUT, call
 from multiprocessing import Pool, cpu_count
 
 def _render( params ):
-    """
-    Render dot graphs as images
+	"""
+	Render dot graphs as images
 
-    Parameters
-    ----------
-    params: tuple
-        Path, format, size and graph to output
+	Parameters
+	----------
+	params: tuple
+		Path, format, size and graph to output
 
-    Returns
-    -------
-    path: str
-        Path to the newly created file
-    """
+	Returns
+	-------
+	path: str
+		Path to the newly created file
+	"""
 	path, fmt, size, graph = params
 	with open( path , 'w' ) as out:
 		pipe = Popen( [ 'dot',  '-Gsize=1,1!', '-Gdpi={}'.format( size ), '-T', fmt ], stdout = out, stdin = PIPE, stderr = None )
