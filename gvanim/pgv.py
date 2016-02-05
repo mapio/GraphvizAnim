@@ -30,7 +30,7 @@ def _py_render( params ) :
 	return path
 
 
-def render( graphs , basename , fmt='png' , size=320 , layout='neato' ) :
+def pgv_render( graphs , basename , fmt='png' , size=30. , layout='dot' ) :
 	# FIXME: Could not get the Pool to work with pygraphviz graphs
 	return map( _py_render , [( '{}_{:03}.{}'.format( basename , n , fmt )  ,
 				fmt , size , layout , graph )
