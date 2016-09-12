@@ -1,6 +1,6 @@
 # GraphvizAnim
 
-[![Build Status](https://travis-ci.org/mapio/GraphvizAnim.png?branch=master)](https://travis-ci.org/mapio/GraphvizAnim) [![Gitter](https://badges.gitter.im/mapio/GraphvizAnim.svg)](https://gitter.im/mapio/GraphvizAnim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Binder](https://img.shields.io/badge/launch-binder-ff69b4.svg?style=flat)](http://mybinder.org/repo/mapio/GraphvizAnim/examples/heapsort.ipynb)
+[![Build Status](https://travis-ci.org/mapio/GraphvizAnim.png?branch=master)](https://travis-ci.org/mapio/GraphvizAnim) [![Gitter](https://badges.gitter.im/mapio/GraphvizAnim.svg)](https://gitter.im/mapio/GraphvizAnim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Binder](https://img.shields.io/badge/launch-binder-ff69b4.svg?style=flat)](http://mybinder.org/repo/mapio/GraphvizAnim/notebooks/examples/heapsort.ipynb)
 
 GraphvizAnim is a tool to create simple animated graph visualizations; it is
 just a proof of concept, aimed mainly at teaching purposes. It is based on
