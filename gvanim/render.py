@@ -22,7 +22,7 @@ def _render( params ):
 	path, fmt, size, graph = params
 	with open( path , 'w' ) as out:
 		pipe = Popen( [ 'dot',  '-Gsize=1,1!', '-Gdpi={}'.format( size ), '-T', fmt ], stdout = out, stdin = PIPE, stderr = None )
-		pipe.communicate( input = graph )
+		pipe.communicate( input = graph.encode() )
 	return path
 
 def render( graphs, basename, fmt = 'png', size = 320 ):

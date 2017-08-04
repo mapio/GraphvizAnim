@@ -22,7 +22,7 @@ from shutil import rmtree
 from IPython.display import Image
 import ipywidgets as widgets
 
-from render import render
+from .render import render
 
 def interactive( animation, size = 320 ):
 	basedir = mkdtemp()

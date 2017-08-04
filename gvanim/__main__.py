@@ -18,7 +18,7 @@
 from argparse import ArgumentParser, FileType
 from sys import stdin
 
-import animation, render
+from . import animation, render
 
 def main():
 
