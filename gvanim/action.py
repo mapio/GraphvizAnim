@@ -29,11 +29,12 @@ class AddNode( object ):
 		steps[ -1 ].V.add( self.v )
 
 class HighlightNode( object ):
-	def __init__( self, v ):
+	def __init__( self, v, color = 'red' ):
 		self.v = v
+		self.color = color
 	def __call__( self, steps ):
 		steps[ -1 ].V.add( self.v )
-		steps[ -1 ].hV.add( self.v )
+		steps[ -1 ].hV[ self.v ] = self.color
 
 class LabelNode( object ):
 	def __init__( self, v, label ):
@@ -58,14 +59,19 @@ class RemoveNode( object ):
 		self.v = v
 	def __call__( self, steps ):
 		steps[ -1 ].V.discard( self.v )
-		steps[ -1 ].hV.discard( self.v )
+		try:
+			del steps[ -1 ].hV[ self.v ]
+		except KeyError:
+			pass
 		try:
 			del steps[ -1 ].L[ self.v ]
 		except KeyError:
 			pass
 		dE = set( e for e in steps[ -1 ].E if self.v in e )
 		steps[ -1 ].E -= dE
-		steps[ -1 ].hE -= dE
+		for e in list(steps[ -1 ].hE.keys()):
+			if self.v in e:
+				del steps[ -1 ].hE[ e ]
 
 class AddEdge( object ):
 	def __init__( self, u, v ):
@@ -77,14 +83,15 @@ class AddEdge( object ):
 		steps[ -1 ].E.add( ( self.u, self.v ) )
 
 class HighlightEdge( object ):
-	def __init__( self, u, v ):
+	def __init__( self, u, v, color = 'red' ):
 		self.u = u
 		self.v = v
+		self.color = color
 	def __call__( self, steps ):
 		steps[ -1 ].V.add( self.u )
 		steps[ -1 ].V.add( self.v )
 		steps[ -1 ].E.add( ( self.u, self.v ) )
-		steps[ -1 ].hE.add( ( self.u, self.v ) )
+		steps[ -1 ].hE[ ( self.u, self.v ) ] = self.color
 
 class RemoveEdge( object ):
 	def __init__( self, u, v ):
@@ -92,5 +99,8 @@ class RemoveEdge( object ):
 		self.v = v
 	def __call__( self, steps ):
 		steps[ -1 ].E.discard( ( self.u, self.v ) )
-		steps[ -1 ].hE.discard( ( self.u, self.v ) )
+		try:
+			del steps[ -1 ].hE[ ( self.u, self.v ) ]
+		except KeyError:
+			pass
 
