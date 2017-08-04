@@ -18,7 +18,7 @@
 from email.utils import quote
 import shlex
 
-import action
+from . import action
 
 class ParseException( Exception ):
 	pass

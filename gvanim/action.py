@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License along with
 # "GraphvizAnim". If not, see <http://www.gnu.org/licenses/>.
 
-import animation
+from . import animation
 
 class NextStep( object ):
 	def __init__( self, clean = False ):
