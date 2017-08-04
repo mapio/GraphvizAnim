@@ -113,7 +113,7 @@ class Animation( object ):
 			except KeyError:
 				raise ParseException( 'unrecognized command: {}'.format( action ) )
 			except TypeError:
- 				raise ParseException( 'wrong number of parameters: {}'.format( line.strip() ) )
+				raise ParseException( 'wrong number of parameters: {}'.format( line.strip() ) )
 				return
 
 	def steps( self ):
