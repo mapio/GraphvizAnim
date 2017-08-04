@@ -15,12 +15,11 @@
 # You should have received a copy of the GNU General Public License along with
 # "GraphvizAnim". If not, see <http://www.gnu.org/licenses/>.
 
-from . import animation
-
 class NextStep( object ):
 	def __init__( self, clean = False ):
 		self.clean = clean
 	def __call__( self, steps ):
+		from . import animation
 		steps.append( animation.Step( None if self.clean else steps[ -1 ] ) )
 
 class AddNode( object ):
