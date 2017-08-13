@@ -34,8 +34,8 @@ class Step( object ):
 			self.V = set()
 			self.E = set()
 			self.L = dict()
-		self.hV = set()
-		self.hE = set()
+		self.hV = dict()
+		self.hE = dict()
 
 	def node_format( self, v ):
 		fmt = []
@@ -44,7 +44,7 @@ class Step( object ):
 		except KeyError:
 			pass
 		if v in self.hV:
-			fmt.append( 'color=red' )
+			fmt.append( 'color={}'.format( self.hV[ v ] ) )
 		elif v not in self.V:
 			fmt.append( 'style=invis' )
 		if fmt: return '[{}]'.format( ','.join( fmt ) )
@@ -52,7 +52,7 @@ class Step( object ):
 
 	def edge_format( self, e ):
 		if e in self.hE:
-			return '[color=red]'
+			return '[color={}]'.format( self.hE[ e ] )
 		elif e in self.E:
 			return ''
 		return '[style=invis]'
@@ -71,8 +71,8 @@ class Animation( object ):
 	def add_node( self, v ):
 		self._actions.append( action.AddNode( v ) )
 
-	def highlight_node( self, v ):
-		self._actions.append( action.HighlightNode( v ) )
+	def highlight_node( self, v, color = 'red' ):
+		self._actions.append( action.HighlightNode( v, color = color ) )
 
 	def label_node( self, v, label ):
 		self._actions.append( action.LabelNode( v, label ) )
@@ -86,8 +86,8 @@ class Animation( object ):
 	def add_edge( self, u, v ):
 		self._actions.append( action.AddEdge( u, v ) )
 
-	def highlight_edge( self, u, v ):
-		self._actions.append( action.HighlightEdge( u, v ) )
+	def highlight_edge( self, u, v, color = 'red' ):
+		self._actions.append( action.HighlightEdge( u, v, color = color ) )
 
 	def remove_edge( self, u, v ):
 		self._actions.append( action.RemoveEdge( u, v ) )
