@@ -6,7 +6,7 @@ def read( path ):
 
 setup(
 	name = 'GraphvizAnim',
-	version = '0.2-alpha',
+	version = '0.3-alpha',
 	description = 'A tool to create animated graph visualizations, based on graphviz',
 	long_description = read( 'README.md' ),
 	author = 'Massimo Santini',
@@ -22,5 +22,3 @@ setup(
 		'Topic :: Software Development :: Libraries :: Python Modules'
 	]
 )
-
-
