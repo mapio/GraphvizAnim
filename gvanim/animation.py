@@ -15,10 +15,12 @@
 # You should have received a copy of the GNU General Public License along with
 # "GraphvizAnim". If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import absolute_import
+
 from email.utils import quote
 import shlex
 
-from . import action
+from gvanim import action
 
 class ParseException( Exception ):
 	pass

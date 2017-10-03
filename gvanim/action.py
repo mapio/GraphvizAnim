@@ -19,8 +19,8 @@ class NextStep( object ):
 	def __init__( self, clean = False ):
 		self.clean = clean
 	def __call__( self, steps ):
-		from . import animation
-		steps.append( animation.Step( None if self.clean else steps[ -1 ] ) )
+		from gvanim.animation import Step
+		steps.append( Step( None if self.clean else steps[ -1 ] ) )
 
 class AddNode( object ):
 	def __init__( self, v ):
@@ -103,4 +103,3 @@ class RemoveEdge( object ):
 			del steps[ -1 ].hE[ ( self.u, self.v ) ]
 		except KeyError:
 			pass
-

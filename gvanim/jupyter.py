@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License along with
 # "GraphvizAnim". If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import absolute_import
+
 from os.path import join
 from tempfile import mkdtemp
 from shutil import rmtree
@@ -22,7 +24,7 @@ from shutil import rmtree
 from IPython.display import Image
 import ipywidgets as widgets
 
-from .render import render
+from gvanim import render
 
 def interactive( animation, size = 320 ):
 	basedir = mkdtemp()

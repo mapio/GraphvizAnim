@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License along with
 # "GraphvizAnim". If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import absolute_import
+
 from subprocess import Popen, PIPE, STDOUT, call
 from multiprocessing import Pool, cpu_count
 

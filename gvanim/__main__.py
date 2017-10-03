@@ -15,10 +15,12 @@
 # You should have received a copy of the GNU General Public License along with
 # "GraphvizAnim". If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import absolute_import
+
 from argparse import ArgumentParser, FileType
 from sys import stdin
 
-from . import animation, render
+from gvanim import Animation, render, gif
 
 def main():
 
@@ -28,9 +30,9 @@ def main():
 	parser.add_argument( 'basename', help = 'The basename of the generated file' )
 	args = parser.parse_args()
 
-	ga = animation.Animation()
+	ga = Animation()
 	ga.parse( args.animation )
-	render.gif( render.render( ga.graphs(), args.basename, 'png' ), args.basename, args.delay )
+	gif( render( ga.graphs(), args.basename, 'png' ), args.basename, args.delay )
 
 if __name__ == '__main__':
 	main()
