@@ -1,1 +1,3 @@
 dist/
+GraphvizAnim.egg-info/
+Pipfile*
