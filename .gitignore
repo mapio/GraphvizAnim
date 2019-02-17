@@ -1,2 +1,3 @@
-dist/
 .envrc
+dist/
+__pycache__/
