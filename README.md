@@ -1,12 +1,12 @@
 # GraphvizAnim
 
-[![Build Status](https://travis-ci.org/mapio/GraphvizAnim.png?branch=master)](https://travis-ci.org/mapio/GraphvizAnim) [![Binder](https://img.shields.io/badge/launch-binder-ff69b4.svg?style=flat)](http://mybinder.org/repo/mapio/GraphvizAnim/notebooks/examples/heapsort.ipynb) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1037284.svg)](https://doi.org/10.5281/zenodo.1037284)
+[![Build Status](https://travis-ci.org/mapio/GraphvizAnim.png?branch=master)](https://travis-ci.org/mapio/GraphvizAnim) [![Binder](https://img.shields.io/badge/launch-binder-ff69b4.svg?style=flat)](https://mybinder.org/v2/gh/mapio/GraphvizAnim/master?filepath=examples/heapsort.ipynb) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1037284.svg)](https://doi.org/10.5281/zenodo.1037284)
 
 
 GraphvizAnim is a tool to create simple animated graph visualizations; it is
 just a proof of concept, aimed mainly at teaching purposes. It is based on
 [Graphviz](http://www.graphviz.org/) for the graph rendering part and on
-[ImageMagick](http://www.imagemagick.org/) for the animated gif generation. You can [run the heap sort animation](http://mybinder.org/repo/mapio/GraphvizAnim/examples/heapsort.ipynb) on-line using [binder](http://mybinder.org/).
+[ImageMagick](http://www.imagemagick.org/) for the animated gif generation. You can [run the heap sort animation](https://mybinder.org/v2/gh/mapio/GraphvizAnim/master?filepath=examples/heapsort.ipynb) on-line using [binder](http://mybinder.org/).
 
 <p align="center">
 <img src="examples/dfv.gif"/>
@@ -50,4 +50,4 @@ algorithm using [Jupyter](http://jupyter.org/) by running
 
 and running all the cells in order; or you can give a try to
 [binder](http://mybinder.org) and watch the above animation
-[actually running](http://mybinder.org/repo/mapio/GraphvizAnim/examples/heapsort.ipynb) on-line.
+[actually running](https://mybinder.org/v2/gh/mapio/GraphvizAnim/master?filepath=examples/heapsort.ipynb) on-line.
