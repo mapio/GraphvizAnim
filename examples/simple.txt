@@ -1,7 +1,7 @@
 ae 1 2
 ae 1 "a \"node\""
 ae 2 "a \"node\""
-le 1 2 "Label 0"
+le 1 2 "L0"
 ns
 hn 1
 ns
