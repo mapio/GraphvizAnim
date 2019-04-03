@@ -93,6 +93,17 @@ class HighlightEdge( object ):
 		steps[ -1 ].E.add( ( self.u, self.v ) )
 		steps[ -1 ].hE[ ( self.u, self.v ) ] = self.color
 
+class LabelEdge( object ):
+	def __init__( self, u, v, label = 'label' ):
+		self.u = u
+		self.v = v
+		self.label_edge = label
+	def __call__( self, steps ):
+		steps[ -1 ].V.add( self.u )
+		steps[ -1 ].V.add( self.v )
+		steps[ -1 ].E.add( ( self.u, self.v ) )
+		steps[ -1 ].lE[ ( self.u, self.v ) ] = self.label_edge
+
 class RemoveEdge( object ):
 	def __init__( self, u, v ):
 		self.u = u
@@ -101,5 +112,6 @@ class RemoveEdge( object ):
 		steps[ -1 ].E.discard( ( self.u, self.v ) )
 		try:
 			del steps[ -1 ].hE[ ( self.u, self.v ) ]
+			del steps[ -1 ].lE[ ( self.u, self.v ) ]
 		except KeyError:
 			pass
