@@ -34,7 +34,9 @@ def render( graphs, basename, fmt = 'png', size = 320 ):
 		_map = map
 	return _map( _render, [ ( '{}_{:03}.{}'.format( basename, n, fmt ), fmt, size, graph ) for n, graph in enumerate( graphs ) ] )
 
-def gif( files, basename, delay = 100 ):
+def gif( files, basename, delay = 100, size = 320 ):
+	for file in files:
+		call([ 'mogrify', '-gravity', 'center', '-background', 'white', '-extent', str(size), file ])
 	cmd = [ 'convert' ]
 	for file in files:
 		cmd.extend( ( '-delay', str( delay ), file ) )

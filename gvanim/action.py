@@ -42,7 +42,7 @@ class LabelNode( object ):
 		self.label = label
 	def __call__( self, steps ):
 		steps[ -1 ].V.add( self.v )
-		steps[ -1 ].L[ self.v ] = self.label
+		steps[ -1 ].lV[ self.v ] = self.label
 
 class UnlabelNode( object ):
 	def __init__( self, v ):
@@ -50,7 +50,7 @@ class UnlabelNode( object ):
 	def __call__( self, steps ):
 		steps[ -1 ].V.add( self.v )
 		try:
-			del steps[ -1 ].L[ self.v ]
+			del steps[ -1 ].lV[ self.v ]
 		except KeyError:
 			pass
 
@@ -64,7 +64,7 @@ class RemoveNode( object ):
 		except KeyError:
 			pass
 		try:
-			del steps[ -1 ].L[ self.v ]
+			del steps[ -1 ].lV[ self.v ]
 		except KeyError:
 			pass
 		dE = set( e for e in steps[ -1 ].E if self.v in e )
@@ -94,7 +94,7 @@ class HighlightEdge( object ):
 		steps[ -1 ].hE[ ( self.u, self.v ) ] = self.color
 
 class LabelEdge( object ):
-	def __init__( self, u, v, label = 'label' ):
+	def __init__( self, u, v, label ):
 		self.u = u
 		self.v = v
 		self.label_edge = label
@@ -103,6 +103,19 @@ class LabelEdge( object ):
 		steps[ -1 ].V.add( self.v )
 		steps[ -1 ].E.add( ( self.u, self.v ) )
 		steps[ -1 ].lE[ ( self.u, self.v ) ] = self.label_edge
+
+class UnlabelEdge( object ):
+	def __init__( self, u, v ):
+		self.u = u
+		self.v = v
+	def __call__( self, steps ):
+		steps[ -1 ].V.add( self.u )
+		steps[ -1 ].V.add( self.v )
+		steps[ -1 ].E.add( ( self.u, self.v ) )
+		try:
+			del steps[ -1 ].lE[ ( self.u, self.v ) ]
+		except KeyError:
+			pass
 
 class RemoveEdge( object ):
 	def __init__( self, u, v ):

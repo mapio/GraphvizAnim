@@ -31,41 +31,42 @@ class Step( object ):
 		if step:
 			self.V = step.V.copy()
 			self.E = step.E.copy()
-			self.L = step.L.copy()
+			self.lV = step.lV.copy()
 			self.lE = step.lE.copy()
 		else:
 			self.V = set()
 			self.E = set()
-			self.L = dict()
+			self.lV = dict()
 			self.lE = dict()
 		self.hV = dict()
 		self.hE = dict()
 
 	def node_format( self, v ):
 		fmt = []
-		try:
-			fmt.append( 'label="{}"'.format( self.L[ v ] ) )
-		except KeyError:
-			pass
+		if v in self.lV:
+			fmt.append( 'label="{}"'.format( quote( str( self.lV[ v ] ) ) ) )
 		if v in self.hV:
 			fmt.append( 'color={}'.format( self.hV[ v ] ) )
 		elif v not in self.V:
 			fmt.append( 'style=invis' )
 		if fmt:
-                        return '[{}]'.format( ','.join( fmt ) )
+			return '[{}]'.format( ', '.join( fmt ) )
 		return ''
 
 	def edge_format( self, e ):
+		fmt = []
 		if e in self.lE:
-			return '[label={}]'.format( self.lE[ e ] )
-		elif e in self.hE:
-			return '[color={}]'.format( self.hE[ e ] )
-		elif e in self.E:
-			return ''
-		return '[style=invis]'
+			fmt.append('label="{}"'.format( quote( str( self.lE[ e ] ) ) ) )
+		if e in self.hE:
+			fmt.append('color={}'.format( self.hE[ e ] ) )
+		elif e not in self.E:
+			fmt.append('style=invis')
+		if fmt:
+			return '[{}]'.format( ', '.join( fmt ) )
+		return ''
 
 	def __repr__( self ):
-		return '{{ V = {}, E = {}, hV = {}, hE = {}, L = {}, lE = {} }}'.format( self.V, self.E, self.hV, self.hE, self.L, self.lE )
+		return '{{ V = {}, E = {}, hV = {}, hE = {}, L = {}, lE = {} }}'.format( self.V, self.E, self.hV, self.hE, self.lV, self.lE )
 
 class Animation( object ):
 
@@ -96,8 +97,11 @@ class Animation( object ):
 	def highlight_edge( self, u, v, color = 'red' ):
 		self._actions.append( action.HighlightEdge( u, v, color = color ) )
 
-	def label_edge( self, u, v, label = 'label' ):
-		self._actions.append( action.LabelEdge( u, v, label) )
+	def label_edge( self, u, v, label ):
+		self._actions.append( action.LabelEdge( u, v, label ) )
+
+	def unlabel_edge( self, u, v ):
+		self._actions.append( action.UnlabelEdge( u, v ) )
 
 	def remove_edge( self, u, v ):
 		self._actions.append( action.RemoveEdge( u, v ) )
@@ -113,6 +117,7 @@ class Animation( object ):
 			'ae' : self.add_edge,
 			'he' : self.highlight_edge,
 			'le' : self.label_edge,
+			'ue' : self.unlabel_edge,
 			're' : self.remove_edge,
 		}
 		for line in lines:
@@ -146,4 +151,5 @@ class Animation( object ):
 			for e in E: graph.append( '"{}" -> "{}" {};'.format( quote( str( e[ 0 ] ) ), quote( str( e[ 1 ] ) ), s.edge_format( e ) ) )
 			graph.append( '}' )
 			graphs.append( '\n'.join( graph ) )
+		
 		return graphs

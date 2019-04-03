@@ -1,12 +1,13 @@
 ae 1 2
 ae 1 "a \"node\""
 ae 2 "a \"node\""
-le 1 2 "L0"
+le 1 2 "an \"edge\""
 ns
 hn 1
 ns
 hn 2
-ln 2 "foo bar"
+ln 2 "foo \"bar\""
+ue 1 2
 ns
 hn "a \"node\""
 # this is a comment
